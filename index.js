@@ -1,5 +1,6 @@
 const fs = require("fs");
 const http = require("http");
+const url = require("url");
 
 // synchronous way
 // const textIn = fs.readFileSync("./txt/input.txt", "utf-8");
@@ -26,6 +27,15 @@ const http = require("http");
 // console.log("Well read file");
 
 const server = http.createServer((req, res) => {
+  const pathName = req.url;
+
+  if (pathName === "/" || pathName === "/overview") {
+    res.end("This is the overview");
+  } else if (pathName === "/product") {
+    res.end("This is the product");
+  } else {
+    res.end("NOT found");
+  }
   res.end("hello from the server!");
 });
 
